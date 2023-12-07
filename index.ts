@@ -1,3 +1,3 @@
 import fs from 'fs'
 
-console.log("RUN")
+console.log("Advent Of Code Day 3")
