@@ -2,7 +2,7 @@ import fs from 'fs'
 
 console.log("Advent Of Code Day 2")
 
-const fileInput: string = fs.readFileSync('./data/day2_sample.txt', 'utf8').toString()
+const fileInput: string = fs.readFileSync('./data/day2.txt', 'utf8').toString()
 
 // Split into games
 const gameTexts: string[] = fileInput.split('\n')
@@ -30,7 +30,7 @@ gameTexts.forEach(gameText => {
   const gameNumber: number = parseInt(gameText.substring(5, colonIndex))
   const setTexts: string[] = gameText.substring(colonIndex + 2).split('; ')
   const sets: string[][] = setTexts.map(setText => setText.split(', '))
-  let isGamePossible = true
+  let isGamePossible: boolean = true
   sets.forEach(set => {
     set.forEach(cubeDetails => {
       const values: string[] = cubeDetails.split(' ')
