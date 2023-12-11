@@ -2,7 +2,7 @@ import fs from 'fs'
 
 console.log("Advent Of Code Day 3")
 
-const fileInput: string = fs.readFileSync('./data/day3_sample.txt', 'utf8').toString()
+const fileInput: string = fs.readFileSync('./data/day3.txt', 'utf8').toString()
 // console.log("FILE INPUT: ", fileInput)
 
 // Split into lines
@@ -12,14 +12,16 @@ const dataLines: string[] = fileInput.split('\n')
 // Assumes the first character in the string is the starting digit
 // TODO - Find a better name for this function
 const findNumberInString = (text: string): { value: number, lastIndex: number } => {
+  // console.log("text: ", text)
   let numberString = text[0]
   for (let i = 1; i < text.length; i++) {
     const character = text[i]
     if (isNaN(parseInt(character))) return { value: parseInt(numberString), lastIndex: i - 1 }
     numberString += character
   }
-  throw new Error('Could not find number')
+  return { value: parseInt(numberString), lastIndex: text.length - 1 }
 }
+
 
 const containsSymbol = (text: string) => {
   return !!text.match(/[-#!$%^&*()_+|~=`{}\[\]:";'<>?,\/]/)
@@ -27,11 +29,11 @@ const containsSymbol = (text: string) => {
 
 // Finds if a number has any surrounding symbols and if true, returns the value of the number found.
 const findSurroundingSymbols = (dataLines: string[], line: string, characterIndex: number, lineIndex: number, numberEndIndex) => {
-  
+
   // Checking the 0 or last line/index is fine because it's at worst just redundant - if true it means one of the other checks is true
   // Set Indexes
   const beforeIndex = characterIndex - 1 > 0 ? characterIndex - 1 : 0
-  const afterIndex = (characterIndex + 1 + numberEndIndex) < line.length ? (characterIndex + 1 +numberEndIndex) : line.length - 1
+  const afterIndex = (characterIndex + 1 + numberEndIndex) < line.length ? (characterIndex + 1 + numberEndIndex) : line.length - 1
   const beforeLineIndex = lineIndex - 1 > 0 ? lineIndex - 1 : 0
   const afterLineIndex = lineIndex + 1 < dataLines.length ? lineIndex + 1 : dataLines.length - 1
 
@@ -65,6 +67,7 @@ dataLines.forEach((line, lineIndex) => {
     if (!isNum) continue
 
     // Find start and end of number
+    // console.log("lineIndex: ", lineIndex)
     const numberDetails = findNumberInString(line.substring(k))
 
     // Check for neighboring symbols
