@@ -12,7 +12,6 @@ const dataLines: string[] = fileInput.split('\n')
 // Assumes the first character in the string is the starting digit
 // TODO - Find a better name for this function
 const findNumberInString = (text: string): { value: number, lastIndex: number } => {
-  // console.log("text: ", text)
   let numberString = text[0]
   for (let i = 1; i < text.length; i++) {
     const character = text[i]
@@ -24,7 +23,7 @@ const findNumberInString = (text: string): { value: number, lastIndex: number } 
 
 
 const containsSymbol = (text: string) => {
-  return !!text.match(/[-#!$%^&*()_+|~=`{}\[\]:";'<>?,\/]/)
+  return !!text.match(/[-@#!$%^&*()_+|~=`{}\[\]:";'<>?,\/]/)
 }
 
 // Finds if a number has any surrounding symbols and if true, returns the value of the number found.
@@ -67,7 +66,6 @@ dataLines.forEach((line, lineIndex) => {
     if (!isNum) continue
 
     // Find start and end of number
-    // console.log("lineIndex: ", lineIndex)
     const numberDetails = findNumberInString(line.substring(k))
 
     // Check for neighboring symbols
@@ -77,6 +75,7 @@ dataLines.forEach((line, lineIndex) => {
     // Skip to the character after this number (k++ will then increment to the next character not bordering this number)
     k += numberDetails.lastIndex + 1
   }
+
 })
 
 console.log("TOTAL: ", total)
