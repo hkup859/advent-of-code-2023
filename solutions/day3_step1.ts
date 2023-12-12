@@ -27,7 +27,7 @@ const containsSymbol = (text: string) => {
 }
 
 // Finds if a number has any surrounding symbols and if true, returns the value of the number found.
-const findSurroundingSymbols = (dataLines: string[], line: string, characterIndex: number, lineIndex: number, numberEndIndex) => {
+const findSurroundingSymbols = (dataLines: string[], line: string, characterIndex: number, lineIndex: number, numberEndIndex: number) => {
 
   // Checking the 0 or last line/index is fine because it's at worst just redundant - if true it means one of the other checks is true
   // Set Indexes
