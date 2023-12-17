@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "day2": "tsx solutions/day2.ts",
-    "day3": "tsx day3.ts"
+    "day3": "tsx solutions/day3.ts",
+    "day4": "tsx day4.ts"
   },
   "author": "",
   "license": "ISC",
